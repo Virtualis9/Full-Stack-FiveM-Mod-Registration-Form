@@ -4,12 +4,14 @@ const port = 3000;
 const multer = require('multer');
 const upload = multer();
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('Express is working!');
 });
 
 
-app.post('/submit', upload.none(), (req, res) => {
+app.post('submit', upload.none(), (req, res) => {
   console.log(req.body);
   res.json({ message: 'Form submitted successfully', data: req.body });
 });

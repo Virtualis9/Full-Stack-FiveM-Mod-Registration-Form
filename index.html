@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
 </head>
 <body>
-    <form autocomplete="on">
+    <form class="form" autocomplete="on">
         <fieldset>
             <legend>Registration Form</legend>
             <input type="email" id="email" name="email" placeholder="Enter your email" required>
@@ -20,29 +20,36 @@
         </fieldset>
     </form>
     <script>
-        
-
-        const form = document.querySelector('form')
+    
+        const form = document.querySelector('.form')
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
+
             const formData = new FormData(form);
+            console.log(formData.get('gangName'))
 
-            for (item of formData){
-                console.log(item[0], item[1])
-            }
 
-            fetch('/submit', {
+            const data = Object.fromEntries(formData)
+            console.log(data)
+
+
+            fetch('https://reqres.in/api/users', {
                 method: 'POST',
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
             })
-    
-                .then(res => res.json())
-                .then(res => console.log(res));
-               
-           
-    
 
+            .then(res => {
+               if (!res.ok) {
+                    throw new Error('Network response was not ok ' + res.statusText);
+                }
+                return res.json();
+            })
+           .then(data => console.log(data))
+            .catch(err => console.error('Error:', err)); 
         });
 
        

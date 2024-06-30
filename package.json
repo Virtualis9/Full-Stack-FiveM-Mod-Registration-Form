@@ -3,6 +3,7 @@
     "@citizenfx/client": "^2.0.8695-1",
     "@citizenfx/server": "^2.0.8695-1",
     "express": "^4.19.2",
-    "fivem-js": "^1.5.2"
+    "fivem-js": "^1.5.2",
+    "multer": "^1.4.5-lts.1"
   }
 }

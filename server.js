@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -7,7 +9,7 @@ const upload = multer();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Express is working!');
+  res.send('<h1>Hello World</h1>');
 });
 
 

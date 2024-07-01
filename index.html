@@ -19,6 +19,7 @@
             <button type="submit">Submit Form</button>
         </fieldset>
     </form>
+
     <script>
     
         const form = document.querySelector('.form')
@@ -29,17 +30,19 @@
             const formData = new FormData(form);
             console.log(formData.get('gangName'))
 
-
             const data = Object.fromEntries(formData)
             console.log(data)
 
+            const cors = require('cors')
+            app.use(cors())
 
-            fetch('https://reqres.in/api/users', {
+            fetch('http://localhost:3000', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
+                
             })
 
             .then(res => {
@@ -48,11 +51,9 @@
                 }
                 return res.json();
             })
-           .then(data => console.log(data))
+            .then(data => console.log(data))
             .catch(err => console.error('Error:', err)); 
         });
-
-       
 
     </script>
 </body>

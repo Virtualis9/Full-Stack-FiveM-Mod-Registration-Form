@@ -32,11 +32,12 @@
 
             const data = Object.fromEntries(formData)
             console.log(data)
+            
+            //fairly certain you can't use required in html like this. 
+            // const cors = require('cors')
+            // app.use(cors())
 
-            const cors = require('cors')
-            app.use(cors())
-
-            fetch('http://localhost:3000', {
+            fetch('http://localhost:9000/api/gangform', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

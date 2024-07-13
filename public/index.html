@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FiveM</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <style>
+        .error{
+            color: red;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <form class="form" autocomplete="on">
         <fieldset>
             <legend>Registration Form</legend>
             <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <span class="error" id="emailError">Email must end with @citylife.co.uk</span>
             <br>
             <input type="text" id="gangName" name="gangName" placeholder="Enter gang name" required>
             <br>
@@ -23,6 +30,7 @@
     <script>
     
         const form = document.querySelector('.form')
+        const emailError = document.getElementById('emailError')
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -32,18 +40,24 @@
 
             const data = Object.fromEntries(formData)
             console.log(data)
-            
-            //fairly certain you can't use required in html like this. 
-            // const cors = require('cors')
-            // app.use(cors())
 
+            const emailField = document.getElementById('email');
+            const email = emailField.value;
+            const emailDomain = '@citylife.co.uk'
+
+            if(!email.endsWith(emailDomain)){
+                emailError.style.display = 'block';
+                return;
+            }else {
+                emailError.style.display = 'none';
+            }
+            
             fetch('http://localhost:9001/api/gangform', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
-                
             })
 
             .then(res => {

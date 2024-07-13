@@ -16,6 +16,14 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+//to prevent getting API endpoints mixed up with pages prexis your API with /api/<your route here>
+//you can then extend out your API without clashing with other routes for serving pages.
+// get : /api/gang -> list gangs
+// get: /api/gang/:id -> get specific gang details 
+// post : /api/gang -> create gang
+// put : /api/gang/:id -> update a gang
+// delete : /api/gang/:id -> delete a gang
+
 // Serve the HTML file
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
@@ -23,8 +31,8 @@ app.get('/', (req, res) => {
 
 // SQL connection setup
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
+  host: 'localhost', //replace with your database location
+  user: 'root', // Replace with your database username its normaly root
   password: '', // Replace with your MySQL root password 
   database: 'gtaform' // Ensure this database exists
 });

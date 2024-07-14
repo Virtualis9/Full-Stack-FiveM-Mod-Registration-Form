@@ -45,10 +45,12 @@ connection.connect((err) => {
   }
   console.log('Connected to the MySQL server.');
 
+  //make sure you change the database name here
   connection.query('CREATE DATABASE IF NOT EXISTS qbcoreframework_92deac', (err, result) => {
     if (err) throw err;
     console.log('Database created or already exists.');
 
+    //make sure you change the database name here
     connection.changeUser({ database: 'qbcoreframework_92deac' }, (err) => {
       if (err) throw err;
 

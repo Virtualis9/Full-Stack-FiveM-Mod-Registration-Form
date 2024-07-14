@@ -34,7 +34,8 @@ const connection = mysql.createConnection({
   host: 'localhost', //replace with your database location
   user: 'root', // Replace with your database username its normaly root
   password: '', // Replace with your MySQL root password 
-  database: 'gtaform' // Ensure this database exists
+  database: 'qbCoreFramework_92deac', // Ensure this database exists
+  charset: 'utf8mb4'
 });
 
 connection.connect((err) => {

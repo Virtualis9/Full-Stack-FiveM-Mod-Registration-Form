@@ -34,7 +34,7 @@ const connection = mysql.createConnection({
   host: 'localhost', //replace with your database location
   user: 'root', // Replace with your database username its normaly root
   password: '', // Replace with your MySQL root password 
-  database: 'qbCoreFramework_92deac', // Ensure this database exists
+  database: 'qbcoreframework_92deac', // Ensure this database exists
   charset: 'utf8mb4'
 });
 
@@ -45,11 +45,11 @@ connection.connect((err) => {
   }
   console.log('Connected to the MySQL server.');
 
-  connection.query('CREATE DATABASE IF NOT EXISTS gtaform', (err, result) => {
+  connection.query('CREATE DATABASE IF NOT EXISTS qbcoreframework_92deac', (err, result) => {
     if (err) throw err;
     console.log('Database created or already exists.');
 
-    connection.changeUser({ database: 'gtaform' }, (err) => {
+    connection.changeUser({ database: 'qbcoreframework_92deac' }, (err) => {
       if (err) throw err;
 
       const createTableQuery = `
